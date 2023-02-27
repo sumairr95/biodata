@@ -69,9 +69,14 @@ const ComposedTextField: React.FC = () => {
         <Grid item xs={6}>
           <Card sx={{ minWidth: 275 }}>
             <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Biodata
-              </Typography>
+              <Box>
+                <Grid>
+                  <Typography variant="h6" gutterBottom>
+                    Biodata
+                  </Typography>
+                </Grid>
+              </Box>
+
 
             </CardContent>
             <CardActions>
