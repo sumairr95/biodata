@@ -20,6 +20,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 const ComposedTextField: React.FC = () => {
   return (
@@ -76,12 +77,15 @@ const ComposedTextField: React.FC = () => {
                   </Typography>
                 </Grid>
               </Box>
-
-
+              <ButtonGroup
+                disableElevation
+                variant="contained"
+                aria-label="Disabled elevation buttons"
+              >
+                <Button>Edit</Button>
+                <Button>Remove</Button>
+              </ButtonGroup>
             </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
           </Card>
         </Grid>
       </Grid>
