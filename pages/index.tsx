@@ -10,17 +10,22 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-import Grid from '@mui/material/Grid'; // Grid version 1
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined';
 import Fab from '@mui/material/Fab';
 import TextField from '@mui/material/TextField';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const ComposedTextField: React.FC = () => {
   return (
     <Box sx={{ marginTop: '20px', margin: '20px' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={2}>
+      <Grid container spacing={12}>
+        <Grid item xs={4}>
           <Stack spacing={6}>
             <TextField
               required
@@ -58,11 +63,21 @@ const ComposedTextField: React.FC = () => {
             <Fab variant="extended" color="primary" aria-label="add">
               <SaveAltOutlinedIcon sx={{ mr: 1 }} />
               Save
-              <Grid item>
-
-              </Grid>
             </Fab>
           </Stack>
+        </Grid>
+        <Grid item xs={6}>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>
+                Biodata
+              </Typography>
+
+            </CardContent>
+            <CardActions>
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
         </Grid>
       </Grid>
     </Box>
@@ -70,3 +85,4 @@ const ComposedTextField: React.FC = () => {
 };
 
 export default ComposedTextField;
+
