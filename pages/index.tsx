@@ -22,23 +22,65 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+type FormData = {
+  name: string;
+  occupation: string;
+  age: number;
+  gender: string;
+};
+
 const ComposedTextField: React.FC = () => {
+  const [formData, setFormData] = React.useState<FormData>({
+    name: '',
+    occupation: '',
+    age: 0,
+    gender: 'female',
+  });
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevData) => ({ ...prevData, gender: event.target.value }));
+  };
+
+  const handleSave = () => {
+    // Perform save operation on formData
+    console.log('Save button clicked');
+  };
+
+  const handleEdit = () => {
+    // Perform edit operation on formData
+    console.log('Edit button clicked');
+  };
+
+  const handleRemove = () => {
+    // Perform remove operation on formData
+    console.log('Remove button clicked');
+  };
+
   return (
     <Box sx={{ marginTop: '20px', margin: '20px' }}>
       <Grid container spacing={12}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Stack spacing={6}>
             <TextField
               required
               id="outlined-required"
               label="Name"
-              defaultValue="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
             />
             <TextField
               required
               id="outlined-required"
               label="Occupation"
-              defaultValue="occupation"
+              name="occupation"
+              value={formData.occupation}
+              onChange={handleInputChange}
             />
             <TextField
               id="outlined-number"
@@ -47,51 +89,20 @@ const ComposedTextField: React.FC = () => {
               InputLabelProps={{
                 shrink: true,
               }}
+              name="age"
+              value={formData.age}
+              onChange={handleInputChange}
             />
 
             <FormControl>
               <FormLabel id="component-outlined">Gender</FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
-                name="radio-buttons-group"
+                value={formData.gender}
+                onChange={handleRadioChange}
+                name="gender"
               >
                 <FormControlLabel value="female" control={<Radio />} label="Female" />
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
                 <FormControlLabel value="other" control={<Radio />} label="Other" disabled />
-              </RadioGroup>
-            </FormControl>
-            <Fab variant="extended" color="primary" aria-label="add">
-              <SaveAltOutlinedIcon sx={{ mr: 1 }} />
-              Save
-            </Fab>
-          </Stack>
-        </Grid>
-        <Grid item xs={6}>
-          <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Box>
-                <Grid>
-                  <Typography variant="h6" gutterBottom>
-                    Biodata
-                  </Typography>
-                </Grid>
-              </Box>
-              <ButtonGroup
-                disableElevation
-                variant="contained"
-                aria-label="Disabled elevation buttons"
-              >
-                <Button>Edit</Button>
-                <Button>Remove</Button>
-              </ButtonGroup>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
-  );
-};
-
-export default ComposedTextField;
 
