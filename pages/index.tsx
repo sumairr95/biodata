@@ -29,7 +29,7 @@ type FormData = {
   gender: string;
 };
 
-const ComposedTextField: React.FC = () => {
+export default function ComposedTextField() {
   const [formData, setFormData] = React.useState<FormData>({
     name: '',
     occupation: '',
@@ -100,9 +100,19 @@ const ComposedTextField: React.FC = () => {
                 aria-labelledby="demo-radio-buttons-group-label"
                 value={formData.gender}
                 onChange={handleRadioChange}
-                name="gender"
-              >
+                name="gender">
                 <FormControlLabel value="female" control={<Radio />} label="Female" />
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
                 <FormControlLabel value="other" control={<Radio />} label="Other" disabled />
+              </RadioGroup>
+              <Button variant="contained" size="large">
+                Save
+              </Button>
+            </FormControl>
+          </Stack>
+        </Grid>
+      </Grid>
+    </Box>
+  )
+}
 
