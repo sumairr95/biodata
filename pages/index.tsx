@@ -12,7 +12,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import Fab from '@mui/material/Fab';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
@@ -105,14 +105,35 @@ export default function ComposedTextField() {
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
                 <FormControlLabel value="other" control={<Radio />} label="Other" disabled />
               </RadioGroup>
-              <Button variant="contained" size="large">
+              <Button variant="contained" size="large" startIcon={<SaveAltIcon />}>
                 Save
               </Button>
             </FormControl>
           </Stack>
         </Grid>
+        <Grid item>
+
+          <React.Fragment>
+            <CardContent>
+
+
+
+            </CardContent>
+            <CardActions>
+              <ButtonGroup
+                disableElevation
+                variant="contained"
+                aria-label="Disabled elevation buttons"
+              >
+                <Button>Edit</Button>
+                <Button>Remove</Button>
+              </ButtonGroup>
+            </CardActions>
+          </React.Fragment>
+        </Grid>
       </Grid>
     </Box>
   )
 }
+
 
