@@ -46,7 +46,7 @@ const ComposedTextField: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, gender: event.target.value }));
   };
 
-  const handleSave = () => {
+  const handleSave = (formData: FormData) => {
     // Perform save operation on formData
     console.log('Save button clicked');
   };
@@ -111,10 +111,9 @@ const ComposedTextField: React.FC = () => {
                 <FormControlLabel value="other" control={<Radio />} label="Other" disabled />
               </RadioGroup>
             </FormControl>
-            <Fab variant="extended" color="primary" aria-label="add">
-              <SaveAltOutlinedIcon sx={{ mr: 1 }} onChange={handleSave} />
+            <Button variant="contained" endIcon={<SaveAltOutlinedIcon />}>
               Save
-            </Fab>
+            </Button>
           </Stack>
         </Grid>
         <Grid item xs={6}>
