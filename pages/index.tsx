@@ -12,7 +12,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined';
 import Fab from '@mui/material/Fab';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
@@ -29,7 +29,7 @@ type FormData = {
   gender: string;
 };
 
-export default function ComposedTextField() {
+const ComposedTextField: React.FC = () => {
   const [formData, setFormData] = React.useState<FormData>({
     name: '',
     occupation: '',
@@ -42,7 +42,7 @@ export default function ComposedTextField() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevData) => ({ ...prevData, gender: event.target.value }));
   };
 
@@ -64,12 +64,13 @@ export default function ComposedTextField() {
   return (
     <Box sx={{ marginTop: '20px', margin: '20px' }}>
       <Grid container spacing={12}>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Stack spacing={6}>
             <TextField
               required
               id="outlined-required"
               label="Name"
+              defaultValue="Name"
               name="name"
               value={formData.name}
               onChange={handleInputChange}
@@ -78,6 +79,7 @@ export default function ComposedTextField() {
               required
               id="outlined-required"
               label="Occupation"
+              defaultValue="occupation"
               name="occupation"
               value={formData.occupation}
               onChange={handleInputChange}
@@ -98,26 +100,40 @@ export default function ComposedTextField() {
               <FormLabel id="component-outlined">Gender</FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="gender"
                 value={formData.gender}
-                onChange={handleRadioChange}
-                name="gender">
+                onChange={handleGenderChange}
+
+              >
                 <FormControlLabel value="female" control={<Radio />} label="Female" />
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
                 <FormControlLabel value="other" control={<Radio />} label="Other" disabled />
               </RadioGroup>
-              <Button variant="contained" size="large" startIcon={<SaveAltIcon />}>
-                Save
-              </Button>
             </FormControl>
+            <Fab variant="extended" color="primary" aria-label="add">
+              <SaveAltOutlinedIcon sx={{ mr: 1 }} onChange={handleSave} />
+              Save
+            </Fab>
           </Stack>
         </Grid>
-        <Grid item>
-
-          <React.Fragment>
+        <Grid item xs={6}>
+          <Card sx={{ minWidth: 275 }}>
             <CardContent>
+              <Typography variant='h6' gutterBottom>
+                BioData
+              </Typography>
+              <Typography >
+
+              </Typography>
+              <Typography >
+
+              </Typography>
+              <Typography >
 
 
 
+              </Typography>
             </CardContent>
             <CardActions>
               <ButtonGroup
@@ -125,15 +141,16 @@ export default function ComposedTextField() {
                 variant="contained"
                 aria-label="Disabled elevation buttons"
               >
-                <Button>Edit</Button>
-                <Button>Remove</Button>
+                <Button onChange={handleEdit}>Edit</Button>
+                <Button onChange={handleRemove}>Remove</Button>
               </ButtonGroup>
             </CardActions>
-          </React.Fragment>
+          </Card>
+
         </Grid>
       </Grid>
-    </Box>
-  )
-}
+    </Box >
+  );
+};
 
-
+export default ComposedTextField;
