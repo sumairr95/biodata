@@ -37,6 +37,8 @@ const ComposedTextField: React.FC = () => {
     gender: 'female',
   });
 
+  const [bioArray, setBioArray] = React.useState<Object[]>([]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -46,9 +48,16 @@ const ComposedTextField: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, gender: event.target.value }));
   };
 
-  const handleSave = (formData: FormData) => {
+  const handleSave = () => {
     // Perform save operation on formData
-    console.log('Save button clicked');
+    bioArray.push(formData);
+    setFormData({
+      name: '',
+      occupation: '',
+      age: 0,
+      gender: 'female',
+    });
+    console.log(bioArray);
   };
 
   const handleEdit = () => {
@@ -60,6 +69,44 @@ const ComposedTextField: React.FC = () => {
     // Perform remove operation on formData
     console.log('Remove button clicked');
   };
+
+  const GetCards = () => {
+    return (
+      <div>
+        {bioArray.map((item) => (
+          <Card sx={{ minWidth: 275 }} key={bioArray.indexOf(item)}>
+            <CardContent >
+              <Typography variant='h6' gutterBottom>
+
+              </Typography>
+              <Typography variant='h6' gutterBottom>
+
+              </Typography>
+              <Typography variant='h6' gutterBottom>
+
+              </Typography>
+              <Typography variant='h6' gutterBottom>
+
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <ButtonGroup
+                disableElevation
+                variant="contained"
+                aria-label="Disabled elevation buttons"
+              >
+                <Button onChange={handleEdit}>Edit</Button>
+                <Button onChange={handleRemove}>Remove</Button>
+              </ButtonGroup>
+            </CardActions>
+          </Card>
+        ))
+        }
+      </div >
+    );
+
+  }
+
 
   return (
     <Box sx={{ marginTop: '20px', margin: '20px' }}>
@@ -111,41 +158,13 @@ const ComposedTextField: React.FC = () => {
                 <FormControlLabel value="other" control={<Radio />} label="Other" disabled />
               </RadioGroup>
             </FormControl>
-            <Button variant="contained" endIcon={<SaveAltOutlinedIcon />}>
+            <Button variant="contained" endIcon={<SaveAltOutlinedIcon />} onClick={handleSave}>
               Save
             </Button>
           </Stack>
         </Grid>
         <Grid item xs={6}>
-          <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography variant='h6' gutterBottom>
-                BioData
-              </Typography>
-              <Typography >
-
-              </Typography>
-              <Typography >
-
-              </Typography>
-              <Typography >
-
-
-
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <ButtonGroup
-                disableElevation
-                variant="contained"
-                aria-label="Disabled elevation buttons"
-              >
-                <Button onChange={handleEdit}>Edit</Button>
-                <Button onChange={handleRemove}>Remove</Button>
-              </ButtonGroup>
-            </CardActions>
-          </Card>
-
+          <GetCards />
         </Grid>
       </Grid>
     </Box >
