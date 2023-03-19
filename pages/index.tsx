@@ -60,15 +60,26 @@ const ComposedTextField: React.FC = () => {
     console.log(bioArray);
   };
 
-  const handleEdit = () => {
-    // Perform edit operation on formData
-    console.log('Edit button clicked');
+  const handleEdit = (index: number) => {
+    // Retrieve the formData object from the bioArray using the index
+    const formDataToEdit = bioArray[index] as FormData;
+
+    // Update the formData state with the values from the selected card
+    setFormData(formDataToEdit);
+
+    // Remove the selected card from the bioArray
+    const updatedBioArray = [...bioArray];
+    updatedBioArray.splice(index, 1);
+    setBioArray(updatedBioArray);
   };
 
-  const handleRemove = () => {
-    // Perform remove operation on formData
-    console.log('Remove button clicked');
+  const handleRemove = (index: number) => {
+    // Remove the selected card from the bioArray
+    const updatedBioArray = [...bioArray];
+    updatedBioArray.splice(index, 1);
+    setBioArray(updatedBioArray);
   };
+
 
   const GetCards = () => {
     return (
@@ -77,16 +88,16 @@ const ComposedTextField: React.FC = () => {
           <Card sx={{ minWidth: 275 }} key={bioArray.indexOf(item)}>
             <CardContent >
               <Typography variant='h6' gutterBottom>
-
+                {(item as FormData).name}
               </Typography>
               <Typography variant='h6' gutterBottom>
-
+                {(item as FormData).occupation}
               </Typography>
               <Typography variant='h6' gutterBottom>
-
+                {(item as FormData).age}
               </Typography>
               <Typography variant='h6' gutterBottom>
-
+                {(item as FormData).gender}
               </Typography>
             </CardContent>
             <CardActions>
@@ -95,8 +106,8 @@ const ComposedTextField: React.FC = () => {
                 variant="contained"
                 aria-label="Disabled elevation buttons"
               >
-                <Button onChange={handleEdit}>Edit</Button>
-                <Button onChange={handleRemove}>Remove</Button>
+                <Button onClick={() => handleEdit(bioArray.indexOf(item))}>Edit</Button>
+                <Button onClick={() => handleRemove(bioArray.indexOf(item))}>Remove</Button>
               </ButtonGroup>
             </CardActions>
           </Card>
