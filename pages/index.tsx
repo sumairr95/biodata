@@ -63,15 +63,15 @@ const ComposedTextField: React.FC = () => {
     } catch (err) {
       console.log(err);
     }
-    /* bioArray.push(formData);
-     setFormData({
-       name: '',
-       occupation: '',
-       age: 0,
-       gender: 'female',
-     });
-     console.log(bioArray);
-     */
+    bioArray.push(formData);
+    setFormData({
+      name: '',
+      occupation: '',
+      age: 0,
+      gender: 'female',
+    });
+    console.log(bioArray);
+
   };
 
   const handleEdit = (index: number) => {
