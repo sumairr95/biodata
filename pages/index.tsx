@@ -22,6 +22,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+
+
 type FormData = {
   name: string;
   occupation: string;
@@ -48,16 +50,28 @@ const ComposedTextField: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, gender: event.target.value }));
   };
 
-  const handleSave = () => {
+  const handleSave = async (event) => {
     // Perform save operation on formData
-    bioArray.push(formData);
-    setFormData({
-      name: '',
-      occupation: '',
-      age: 0,
-      gender: 'female',
-    });
-    console.log(bioArray);
+    try {
+      const res = await fetch("http://localhost:3080/api/user", {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+    /* bioArray.push(formData);
+     setFormData({
+       name: '',
+       occupation: '',
+       age: 0,
+       gender: 'female',
+     });
+     console.log(bioArray);
+     */
   };
 
   const handleEdit = (index: number) => {
@@ -183,3 +197,4 @@ const ComposedTextField: React.FC = () => {
 };
 
 export default ComposedTextField;
+
